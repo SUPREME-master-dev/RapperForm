@@ -2,31 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#53118d">
 <title>Which Rapper Are You?</title>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(135deg, #53118d, #6f04f2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #53118d, #6f04f2);
     color: white;
     text-align: center;
-    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .container {
+    width: 100%;
     max-width: 500px;
-    margin: 40px auto;
+    margin: 0 auto;
     padding: 20px;
+    min-height: 100vh;
+    min-height: 100dvh;
     background: #410653;
-    border-radius: 20px;
+    border-radius: 0;
     box-shadow: 0 0 20px rgba(255,0,0,0.2);
+}
+
+@media (min-width: 768px) {
+    .container {
+        margin: 40px auto;
+        min-height: auto;
+        border-radius: 20px;
+    }
 }
 
 h1 {
     color: #e4f9f7;
+    margin-top: 10px;
 }
 
 .question {
@@ -40,10 +63,11 @@ button.option {
     margin: 5px 0;
     border: none;
     border-radius: 12px;
-    background: #222;
+    background: #1d0331;
     color: white;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 16px;
 }
 
 button.option:hover {
@@ -54,13 +78,14 @@ button.option.selected {
     background: #610c69;
 }
 
-
 #result {
     margin-top: 20px;
     font-size: 12px;
     font-weight: bold;
     color: #fff;
     text-shadow: 0 0 10px rgba(126, 12, 109, 0.779);
+    white-space: pre-line;
+    line-height: 1.6;
 }
 
 .b1 {
@@ -72,18 +97,18 @@ button.option.selected {
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 .b1:hover {
     background-color: #000000a4;
     color: rgb(255, 255, 255);
 }
+
 canvas {
     margin-top: 30px;
- 
     max-height: 300px;
 }
-
 
 #gifBox {
     margin-top: 30px;
@@ -108,9 +133,9 @@ canvas {
     <div id="quiz"></div>
     <button class="b1" onclick="showResult()">Show Result</button>
     <div id="result"></div>
-<div id="gifBox">
-    <img id="resultGif" src="" alt="Result GIF" style="display: none;">
-</div>
+    <div id="gifBox">
+        <img id="resultGif" src="" alt="Result GIF" style="display: none;">
+    </div>
 </div>
 
 <script>
@@ -184,6 +209,7 @@ function selectAnswer(qIndex, val, el) {
     el.classList.add("selected");
 
     el.parentElement.style.border = "none";
+    el.parentElement.style.padding = "0";
 }
 
 function showResult() {
@@ -212,19 +238,20 @@ function showResult() {
     let max = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
 
     let text = "";
-   if(max==="A"){
+
+    if (max === "A") {
         text = "You are CEZA 🔥\n\nYou are a disciplined and strong individual who values respect and personal growth. You don’t back down easily, and when life gets tough, you push even harder. People may see you as serious or intense, but deep down, you are someone who believes in hard work and consistency. You are not here to follow others — you are here to prove yourself.";
     }
 
-    if(max==="B"){
+    if (max === "B") {
         text = "You are SAGOPA 🌙\n\nYou have a deep and thoughtful personality. You tend to question life, emotions, and everything around you. While others move on quickly, you prefer to understand things on a deeper level. Sometimes you may overthink, but this is also what makes you unique. You feel things intensely, and your mind is always searching for meaning.";
     }
 
-    if(max==="C"){
+    if (max === "C") {
         text = "You are MOTIVE ⚡\n\nYou are ambitious, modern, and always looking forward. You don’t like staying in one place — you want progress, growth, and success. You adapt quickly to new situations and trends, and you are not afraid to take risks. Your energy comes from your goals, and you are constantly pushing yourself to become better.";
     }
 
-    if(max==="D"){
+    if (max === "D") {
         text = "You are LVBEL C5 🎉\n\nYou are relaxed, fun, and full of energy. You don’t overcomplicate life — you prefer to enjoy the moment and keep things light. People feel comfortable around you because of your positive vibe. You may not take everything too seriously, but that’s exactly what makes you stand out. You bring fun wherever you go.";
     }
 
